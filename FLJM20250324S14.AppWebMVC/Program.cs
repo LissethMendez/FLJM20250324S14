@@ -1,7 +1,15 @@
-var builder = WebApplication.CreateBuilder(args);
+using FLJM20250324S14.AppWebMVC.ModelsY;
+using Microsoft.EntityFrameworkCore;
 
+var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<ClientesDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Conn"));
+});
+
+
 
 var app = builder.Build();
 
